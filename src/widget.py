@@ -2,7 +2,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(input_data: str) -> str:
-    """Функция которая принимает строку и возвращает ее с замаскированным номером. """
+    """Функция которая принимает строку и возвращает ее с замаскированным номером."""
 
     if not input_data:
         return "Ошибка: пустая строка"
@@ -18,7 +18,7 @@ def mask_account_card(input_data: str) -> str:
         encrypted_number = get_mask_account(number)
     else:
         encrypted_number = get_mask_card_number(number)
-    return f"{card} {number}"
+    return f"{card} {encrypted_number}"
 
 
 def get_date(date_string: str) -> str:
