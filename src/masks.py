@@ -2,7 +2,7 @@ from typing import Union
 
 
 def get_mask_card_number(card_number: Union[str, int]) -> str:
-    """Функция которая принимает на вход номер карты и возвращает ее маску."""
+    """Функция которая, принимает на вход номер карты и возвращает ее маску."""
 
     card_number = str(card_number)
     if len(card_number) == 16:
@@ -17,7 +17,7 @@ def get_mask_card_number(card_number: Union[str, int]) -> str:
 
 
 def get_mask_account(account_number: Union[str, int]) -> str:
-    """Функция которая принимает на вход номер счета и возвращает его маску."""
+    """Функция которая, принимает на вход номер счета и возвращает его маску."""
 
     account_number = str(account_number)
     if len(account_number) >= 4:

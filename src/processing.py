@@ -1,7 +1,14 @@
 from datetime import datetime
+from typing import TypedDict
 
 
-def filter_by_state(transactions: list[dict], state: str = "EXECUTED") -> list[dict]:
+class Transaction(TypedDict, total=False):
+    id: int
+    state: str
+    date: str
+
+
+def filter_by_state(transactions: list[Transaction], state: str = "EXECUTED") -> list[Transaction]:
     """
     Фильтрует список транзакций по значению ключа 'state' и
     возвращает новый список словарей, где ключ 'state' равен указанному значению.
@@ -10,12 +17,12 @@ def filter_by_state(transactions: list[dict], state: str = "EXECUTED") -> list[d
     return [new_dict for new_dict in transactions if new_dict.get("state") == state]
 
 
-def sort_by_date(transactions: list[dict], reverse: bool = True) -> list[dict]:
+def sort_by_date(transactions: list[Transaction], reverse: bool = True) -> list[Transaction]:
     """
     Сортирует список транзакций по дате.
     """
 
-    def _parse_to_datetime(transaction: dict) -> datetime:
+    def _parse_to_datetime(transaction: Transaction) -> datetime:
         date_str = transaction.get("date")
 
         # Если даты нет, возвращаем минимально возможную дату,
