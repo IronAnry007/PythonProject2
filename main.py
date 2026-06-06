@@ -1,6 +1,8 @@
-from src.processing import filter_by_state, sort_by_date
+from typing import List
 
-data = [
+from src.processing import Transaction, filter_by_state, sort_by_date
+
+data: List[Transaction] = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
@@ -19,7 +21,6 @@ canceled_only = filter_by_state(data, "CANCELED")
 print(f"\n Фильтр ('CANCELED'): найдено {len(canceled_only)} записей")
 for item in canceled_only:
     print(f"   - ID: {item['id']}, State: {item['state']}")
-
 
 # Для def sort_by_date
 sorted_desc = sort_by_date(data)
