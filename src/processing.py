@@ -1,35 +1,27 @@
 from datetime import datetime
-from typing import TypedDict
+from typing import List, Dict, Any
 
 
-class Transaction(TypedDict, total=False):
-    id: int
-    state: str
-    date: str
-
-
-def filter_by_state(transactions: list[Transaction], state: str = "EXECUTED") -> list[Transaction]:
+def filter_by_state(transactions: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """
-    Фильтрует список транзакций по значению ключа 'state' и
-    возвращает новый список словарей, где ключ 'state' равен указанному значению.
+    Фильтрует список транзакций по значению ключа 'state'.
     """
+    return [t for t in transactions if t.get("state") == state]
 
-    return [new_dict for new_dict in transactions if new_dict.get("state") == state]
 
-
-def sort_by_date(transactions: list[Transaction], reverse: bool = True) -> list[Transaction]:
+def sort_by_date(transactions: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
     """
     Сортирует список транзакций по дате.
     """
 
-    def _parse_to_datetime(transaction: Transaction) -> datetime:
+    def _parse_to_datetime(transaction: Dict[str, Any]) -> datetime:
         date_str = transaction.get("date")
 
-        # Если даты нет, возвращаем минимально возможную дату,
         if not date_str:
             return datetime.min
 
         try:
+            # Правильный синтаксис для Python 3
             return datetime.fromisoformat(str(date_str))
         except ValueError, TypeError:
             return datetime.min
